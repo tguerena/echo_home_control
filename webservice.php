@@ -26,7 +26,8 @@ $ver = $data['version'];
 $requestType = $data['request'][type];
 
 $txt .= json_encode($data);
-
+$myfile = "alexa.txt";
+//echo filetime("alexa.txt");
 file_put_contents($myfile,$txt);
 
 echo json_encode($response);
