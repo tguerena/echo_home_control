@@ -7,5 +7,5 @@
  */
 
 if (preg_match($Command,"/weather/",$query)){
-    getWeather();
+    getWeather("");
 }
