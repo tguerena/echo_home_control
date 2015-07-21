@@ -36,6 +36,13 @@ if (filemtime("alexa.txt") <= strtotime("-1 hour")){
     file_put_contents($myfile,$txt);
 }
 
+$answer = "I heard ".$Command;
+
+$response['version'] = "1.0";
+$response['sessionAttributes'] = "";
+$response['response']['outputSpeech']['type'] = "PlainText";
+$response['response']['outputSpeech']['text'] = $answer;
+$response['response']['shouldEndSession'] = true;
 
 echo json_encode($response);
 
