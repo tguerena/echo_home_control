@@ -5,12 +5,14 @@
  * Date: 7/17/15
  * Time: 8:02 AM
  */
-include "numberify.php";
 header('Content-Type: application/json');
+include "numberify.php";
+
 $data = json_decode(file_get_contents('php://input'),TRUE);
 $Command = !empty($_GET['q']) ? $_GET['q'] : strtolower($data['request'][intent][slots][Command][value]);
-
 $Command = numberify($Command);
+$utterances = array();
+
 include "variables.php";
 if (file_exists("my_variables.php")){include "my_variables.php";}
 include "functions.php";
@@ -36,16 +38,9 @@ if (filemtime("alexa.txt") >= strtotime("-1 hour")){
 } else {
     file_put_contents($myfile,$txt);
 }
+file_put_contents("utterances.txt","");
+foreach ($utterances as $utterance){
+    file_put_contents("utterances.txt","Jarvis {".$utterance." | Command}\n",FILE_APPEND);
+}
 
-$answer = empty($answer)?"I heard ".$Command:$answer;
-
-$response['version'] = "1.0";
-$response['sessionAttributes'] = "";
-$response['response']['outputSpeech']['type'] = "PlainText";
-$response['response']['outputSpeech']['text'] = $answer;
-$response['response']['shouldEndSession'] = true;
-
-echo json_encode($response);
-
-
-header("Content-length: ".ob_get_length());
+alexaSays("",0,"What's new?");
