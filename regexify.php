@@ -6,6 +6,6 @@
  * Time: 7:42 PM
  */
 
-if (preg_match($Command,"/weather/",$query)){
-    getWeather("");
+if (preg_match("/weather/",$Command,$query)){
+    $answer = getWeather("",$forecast_api,$latitude,$longitude);
 }

@@ -12,9 +12,10 @@ $Command = !empty($_GET['q']) ? $_GET['q'] : strtolower($data['request'][intent]
 
 $Command = numberify($Command);
 include "variables.php";
-
 if (file_exists("my_variables.php")){include "my_variables.php";}
+include "functions.php";
 if (file_exists("my_functions.php")){include "my_functions.php";}
+include "regexify.php";
 if (file_exists("my_regexify.php")){include "my_regexify.php";}
 
 if ($_GET['debug'] == "on"){
@@ -36,7 +37,7 @@ if (filemtime("alexa.txt") >= strtotime("-1 hour")){
     file_put_contents($myfile,$txt);
 }
 
-$answer = "I heard ".$Command;
+$answer = empty($answer)?"I heard ".$Command:$answer;
 
 $response['version'] = "1.0";
 $response['sessionAttributes'] = "";
