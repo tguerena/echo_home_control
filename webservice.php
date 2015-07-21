@@ -44,7 +44,7 @@ $response['response']['outputSpeech']['type'] = "PlainText";
 $response['response']['outputSpeech']['text'] = $answer;
 $response['response']['shouldEndSession'] = true;
 
-echo json_encode($response);
+echo json_encode($response,JSON_PRETTY_PRINT);
 
 
 header("Content-length: ".ob_get_length());
