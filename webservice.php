@@ -27,7 +27,7 @@ $requestType = $data['request'][type];
 
 $txt = date("Y-m-d H:i:s")."\n";
 $txt .= $Command."\n";
-$txt .= json_encode($data)."\n";
+$txt .= json_encode($data,JSON_PRETTY_PRINT)."\n";
 $myfile = "alexa.txt";
 
 if (filemtime("alexa.txt") >= strtotime("-1 hour")){
@@ -44,7 +44,7 @@ $response['response']['outputSpeech']['type'] = "PlainText";
 $response['response']['outputSpeech']['text'] = $answer;
 $response['response']['shouldEndSession'] = true;
 
-echo json_encode($response,JSON_PRETTY_PRINT);
+echo json_encode($response);
 
 
 header("Content-length: ".ob_get_length());
