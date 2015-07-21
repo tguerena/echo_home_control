@@ -10,6 +10,7 @@ include "numberify.php";
 
 $data = json_decode(file_get_contents('php://input'),TRUE);
 $Command = !empty($_GET['q']) ? $_GET['q'] : strtolower($data['request'][intent][slots][Command][value]);
+$queryFromWeb = !empty($_GET['q']) ? 1 : 0;
 $Command = numberify($Command);
 $utterances = array();
 
