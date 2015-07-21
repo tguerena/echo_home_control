@@ -25,9 +25,11 @@ $text = print_r($data,true);
 $ver = $data['version'];
 $requestType = $data['request'][type];
 
+$txt = date("Y-m-d H:i:s")."\n";
+$txt .= $Command;
 $txt .= json_encode($data);
 $myfile = "alexa.txt";
-//echo filemtime("alexa.txt");
+
 if (filemtime("alexa.txt") <= strtotime("-1 hour")){
     file_put_contents($myfile,$txt,FILE_APPEND);
 } else {
