@@ -30,7 +30,7 @@ $txt .= $Command;
 $txt .= json_encode($data);
 $myfile = "alexa.txt";
 
-if (filemtime("alexa.txt") <= strtotime("-1 hour")){
+if (filemtime("alexa.txt") >= strtotime("-1 hour")){
     file_put_contents($myfile,$txt,FILE_APPEND);
 } else {
     file_put_contents($myfile,$txt);
