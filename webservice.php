@@ -26,8 +26,8 @@ $ver = $data['version'];
 $requestType = $data['request'][type];
 
 $txt = date("Y-m-d H:i:s")."\n";
-$txt .= $Command;
-$txt .= json_encode($data);
+$txt .= $Command."\n";
+$txt .= json_encode($data)."\n";
 $myfile = "alexa.txt";
 
 if (filemtime("alexa.txt") >= strtotime("-1 hour")){
