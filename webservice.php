@@ -27,7 +27,7 @@ $requestType = $data['request'][type];
 
 $txt .= json_encode($data);
 $myfile = "alexa.txt";
-echo filemtime("alexa.txt");
+//echo filemtime("alexa.txt");
 if (filemtime("alexa.txt") <= strtotime("-1 hour")){
     file_put_contents($myfile,$txt,FILE_APPEND);
 } else {
