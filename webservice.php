@@ -9,8 +9,8 @@ header('Content-Type: application/json');
 include "numberify.php";
 
 $data = json_decode(file_get_contents('php://input'),TRUE);
-$Command = !empty($_GET['q']) ? $_GET['q'] : strtolower($data['request'][intent][slots][Command][value]);
-$queryFromWeb = !empty($_GET['q']) ? 1 : 0;
+$Command = !empty($_GET['q']) ? $_GET['q'] : !empty($data['session'][attributes][prior])? $data['session'][attributes][prior]." ".strtolower($data['request'][intent][slots][Command][value]) : strtolower($data['request'][intent][slots][Command][value]);
+$queryFromWeb = !empty($_GET['q']) ? 1 : 0;ª
 $Command = numberify($Command);
 $utterances = array();
 
@@ -44,4 +44,4 @@ foreach ($utterances as $utterance){
     file_put_contents("utterances.txt","Jarvis {".$utterance." | Command}\n",FILE_APPEND);
 }
 
-alexaSays("",0,"What's new?");
+//alexaSays("",0,"What's new?");
